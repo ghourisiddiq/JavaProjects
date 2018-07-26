@@ -1,3 +1,4 @@
+package com.deloitte.cui;
 
 public class ScopeExample {
 	private int i=1;
