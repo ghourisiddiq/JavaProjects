@@ -31,7 +31,7 @@ public class UserDao implements Dao<User> {
 		 
 		//Establish connection
 	    connection = DriverManager.getConnection("jdbc:oracle:thin:@desktop-m03s522:1522:teamdb", "siddiq", "ghouri");
-		
+		 
 	    //Query the database
 	    ps = connection.prepareStatement("INSERT INTO USERS VALUES(?,?,?,?,?,?)");
 		ps.setInt(1, user.getId());
@@ -79,5 +79,14 @@ public class UserDao implements Dao<User> {
 		
 		
 	}
+
+	@Override
+	public void validate(User t) {
+		Context initCtx = new InitialContext();
+		DataSource ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/TeamDB");
+		
+	}
+
+
 
 }

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.deloitte.web.model.UserBean;
 
@@ -41,6 +42,8 @@ public class ProcessRequestServlet extends HttpServlet {
         
 		boolean status = userBean.authenticate(username, passwd);
 		if (status) {
+			HttpSession session = request.getSession(true);
+			session.setMaxInactiveInterval(10);
 			request.setAttribute("ub", userBean);
 			request.getRequestDispatcher("homeSDgh17.jsp").forward(request, response);
 		} else {
